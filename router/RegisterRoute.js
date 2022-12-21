@@ -1,11 +1,9 @@
-const handelregister = require("../controller/HandelRegister");
+const handelregister = require("../controller/handelRegister/HandelRegister");
 const express = require("express");
 
 const router = express.Router();
 
 router.post("/", (req, res) => {
-  
-
   const { userName, password, email, role } = req.body;
 
   const data = {

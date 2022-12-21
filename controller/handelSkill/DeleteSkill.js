@@ -1,4 +1,4 @@
-const pool = require("../dataAccessLayer/DatabaseConnection");
+const pool = require("../../dataAccessLayer/DatabaseConnection");
 const DeleteSkill = (data) => {
   return new Promise((resolve, reject) => {
     pool.getConnection((err, con) => {
@@ -9,7 +9,7 @@ const DeleteSkill = (data) => {
         });
       }
       const query = "delete from Images where id=?";
-      con.query(query,[data.id], (err, res) => {
+      con.query(query, [data.id], (err, res) => {
         con.release();
         if (err) {
           reject({

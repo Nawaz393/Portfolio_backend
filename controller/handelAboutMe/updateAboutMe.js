@@ -1,8 +1,8 @@
-const pool = require("../dataAccessLayer/DatabaseConnection");
+const pool = require("../../dataAccessLayer/DatabaseConnection");
 
-const insertAboutMe = (data) => {
+const updateAboutMe = (data) => {
   return new Promise((resolve, reject) => {
-    if (data.length < 50) {
+    if (data.text.length < 50) {
       reject({
         success: false,
         message: "the about me must be greater then 50 character",
@@ -17,12 +17,11 @@ const insertAboutMe = (data) => {
         });
       }
 
-      const query = "insert into aboutme (text) values (?)";
+      const query = "update aboutme set text=? where id=1";
 
       con.query(query, [data.text], (err, res) => {
         con.release();
         if (err) {
-            console.log(err)
           reject({
             success: false,
             message: "there is some Error please try again",
@@ -31,11 +30,11 @@ const insertAboutMe = (data) => {
 
         resolve({
           success: true,
-          message: "about me inserted successfully",
+          message: "about me updated successfully",
         });
       });
     });
   });
 };
 
-module.exports = insertAboutMe;
+module.exports = updateAboutMe;

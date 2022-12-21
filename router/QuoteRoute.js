@@ -1,6 +1,6 @@
 const express = require("express");
-const UpdateQuote = require("../controller/UpdateQuote");
-const getquote = require("../controller/getQuote");
+const UpdateQuote = require("../controller/handelQuote/UpdateQuote");
+const getquote = require("../controller/handelQuote/getQuote");
 const QuoteRoute = express.Router();
 
 QuoteRoute.put("/", (req, res) => {
@@ -15,6 +15,12 @@ QuoteRoute.put("/", (req, res) => {
 });
 
 QuoteRoute.get("/", (req, res) => {
-  getquote().then((data)=>{res.json(data)}).catch((err)=>{res.json(err)});
+  getquote()
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
 });
 module.exports = QuoteRoute;

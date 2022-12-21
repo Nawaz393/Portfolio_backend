@@ -1,4 +1,4 @@
-const pool = require("../dataAccessLayer/DatabaseConnection");
+const pool = require("../../dataAccessLayer/DatabaseConnection");
 
 const getquote = () => {
   return new Promise((resolve, reject) => {
@@ -11,7 +11,7 @@ const getquote = () => {
       }
       const query = "select * from quote where id=1";
       con.query(query, (err, res) => {
-        con.release()
+        con.release();
         if (err) {
           reject({
             success: false,
@@ -24,4 +24,4 @@ const getquote = () => {
     });
   });
 };
-module.exports=getquote;
+module.exports = getquote;

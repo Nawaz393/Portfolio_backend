@@ -1,7 +1,7 @@
-const pool = require("../dataAccessLayer/DatabaseConnection");
+const pool = require("../../dataAccessLayer/DatabaseConnection");
 
 const UpdateQuote = (data) => {
- return new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     if (data.Quote.length < 10) {
       reject({
         success: false,
@@ -27,13 +27,12 @@ const UpdateQuote = (data) => {
           });
         }
 
-
         resolve({
-            success:true,
-            message:"Quote updated successfully"
-        })
+          success: true,
+          message: "Quote updated successfully",
+        });
       });
     });
   });
 };
-module.exports=UpdateQuote;
+module.exports = UpdateQuote;

@@ -1,5 +1,5 @@
 const express = require("express");
-const admindata = require("../controller/GetAdminData");
+const admindata = require("../controller/handelAdminDashboard/GetAdminData");
 const AdminRoute = express.Router();
 
 AdminRoute.get("/", (req, res) => {
@@ -12,4 +12,4 @@ AdminRoute.get("/", (req, res) => {
     });
 });
 
-module.exports=AdminRoute;
+module.exports = AdminRoute;

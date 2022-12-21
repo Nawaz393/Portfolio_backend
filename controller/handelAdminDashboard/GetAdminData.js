@@ -1,4 +1,4 @@
-const pool = require("../dataAccessLayer/DatabaseConnection");
+const pool = require("../../dataAccessLayer/DatabaseConnection");
 
 const admindata = () => {
   return new Promise((resolve, reject) => {
@@ -16,17 +16,15 @@ const admindata = () => {
         con.release();
 
         if (err) {
-            reject({
-              success: false,
-              message: "there is some error please try again",
-            });
-          }
-    
-          resolve(res);
+          reject({
+            success: false,
+            message: "there is some error please try again",
+          });
+        }
+
+        resolve(res);
       });
-      
-    
     });
   });
 };
-module.exports=admindata;
+module.exports = admindata;

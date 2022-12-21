@@ -1,11 +1,10 @@
-const pool = require("../dataAccessLayer/DatabaseConnection");
-
-const updateAboutMe = (data) => {
+const pool = require("../../dataAccessLayer/DatabaseConnection");
+const UpdateMyimage = (data) => {
   return new Promise((resolve, reject) => {
-    if (data.text.length < 50) {
+    if (data.image.length < 10) {
       reject({
         success: false,
-        message: "the about me must be greater then 50 character",
+        message: "the Url must be greater then 10 character",
       });
     }
 
@@ -16,10 +15,9 @@ const updateAboutMe = (data) => {
           message: "there is Some error please try again",
         });
       }
+      const query = "update myimage set image=? where id=1";
 
-      const query = "update aboutme set text=? where id=1";
-
-      con.query(query, [data.text], (err, res) => {
+      con.query(query, [data.image], (err, res) => {
         con.release();
         if (err) {
           reject({
@@ -30,11 +28,11 @@ const updateAboutMe = (data) => {
 
         resolve({
           success: true,
-          message: "about me updated successfully",
+          message: "image updated successfully",
         });
       });
     });
   });
 };
 
-module.exports = updateAboutMe;
+module.exports = UpdateMyimage;

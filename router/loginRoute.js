@@ -1,12 +1,16 @@
 const express = require("express");
-const handellogin = require("../controller/HandelLogin");
+const handellogin = require("../controller/handelLogin/HandelLogin");
 
 const loginRouter = express.Router();
 
 loginRouter.post("/", (req, res) => {
   // const { userName, password } = req.body;
 
-  handellogin(req.body).then((data) => res.json(data)).catch((err)=>{res.json(err)});
+  handellogin(req.body)
+    .then((data) => res.json(data))
+    .catch((err) => {
+      res.json(err);
+    });
 });
 
 module.exports = loginRouter;

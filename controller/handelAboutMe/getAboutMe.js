@@ -1,4 +1,4 @@
-const pool = require("../dataAccessLayer/DatabaseConnection");
+const pool = require("../../dataAccessLayer/DatabaseConnection");
 const GetAboutMe = () => {
   return new Promise((resolve, reject) => {
     pool.getConnection((err, con) => {
@@ -21,7 +21,6 @@ const GetAboutMe = () => {
         }
 
         resolve(res);
-
       });
     });
   });

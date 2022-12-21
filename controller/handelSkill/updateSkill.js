@@ -1,4 +1,4 @@
-const pool = require("../dataAccessLayer/DatabaseConnection");
+const pool = require("../../dataAccessLayer/DatabaseConnection");
 
 const UpdateSkill = (data) => {
   return new Promise((resolve, reject) => {

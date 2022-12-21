@@ -1,7 +1,7 @@
 const express = require("express");
-const GetAboutMe = require("../controller/getAboutMe");
-const UpdateAboutMe = require("../controller/updateAboutMe");
-const insertAboutMe = require("../controller/insertAboutMe");
+const GetAboutMe = require("../controller/handelAboutMe/getAboutMe");
+const UpdateAboutMe = require("../controller/handelAboutMe/updateAboutMe");
+const insertAboutMe = require("../controller/handelAboutMe/insertAboutMe");
 const AboutMeRoute = express.Router();
 
 AboutMeRoute.get("/", (req, res) => {

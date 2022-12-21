@@ -1,4 +1,4 @@
-const pool = require("../dataAccessLayer/DatabaseConnection");
+const pool = require("../../dataAccessLayer/DatabaseConnection");
 
 const getskills = () => {
   return new Promise((resolve, reject) => {
@@ -21,12 +21,10 @@ const getskills = () => {
           });
         }
 
-
-        resolve(res)
+        resolve(res);
       });
     });
   });
 };
 
-
-module.exports=getskills;
+module.exports = getskills;

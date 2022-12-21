@@ -1,4 +1,4 @@
-const pool = require("../dataAccessLayer/DatabaseConnection");
+const pool = require("../../dataAccessLayer/DatabaseConnection");
 const skillschema = require("./skillschema");
 
 const handelskills = (data) => {
@@ -17,13 +17,13 @@ const handelskills = (data) => {
       //     value.image2,
       //       value.image3,
       // ];
-      const qdata=Object.values(value);
-    
+      const qdata = Object.values(value);
+
       const query1 = ` 
     insert into Images (name,image1,image2,image3) values (?,?,?,?)`;
 
       conn.query(query1, qdata, (err) => {
-        conn.release()
+        conn.release();
         if (err) {
           if (err.message.toLowerCase().includes("duplicate")) {
             reject({
@@ -41,10 +41,6 @@ const handelskills = (data) => {
           message: "skill added successfully",
         });
       });
-
-      
-       
-      
     });
   });
 };

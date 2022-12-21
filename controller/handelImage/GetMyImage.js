@@ -1,4 +1,4 @@
-const pool = require("../dataAccessLayer/DatabaseConnection");
+const pool = require("../../dataAccessLayer/DatabaseConnection");
 
 const getmyimage = () => {
   return new Promise((resolve, reject) => {
@@ -24,8 +24,6 @@ const getmyimage = () => {
             success: false,
             message: "there no image please upload an image",
           });
-
-          
         }
         resolve(res);
       });
