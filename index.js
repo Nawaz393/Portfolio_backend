@@ -8,6 +8,7 @@ const myimgRoute=require("./router/MyImageRoute");
 const QuoteRoute=require("./router/QuoteRoute")
 const AdminRoute=require("./router/AdminRoute")
 const AboutMeRoute=require("./router/AboutMeRoute")
+const projectRoutes = require("./router/projectRoutes");
 const app = express();
 app.use(upload());
 
@@ -22,6 +23,7 @@ app.use("/myimage",myimgRoute);
 app.use("/Quote",QuoteRoute);
 app.use("/admin",AdminRoute);
 app.use("/aboutme",AboutMeRoute);
+app.use("/project",projectRoutes);
 
 
 
