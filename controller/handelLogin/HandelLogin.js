@@ -4,9 +4,11 @@ const bcrypt = require("bcrypt");
 const GenToken = require("./genaratetoken");
 
 const handellogin = (data) => {
+ 
   return new Promise((resolve, reject) => {
     const { error, value } = schema.validate(data, { abortEarly: false });
     if (error) {
+  
       reject({
         success: false,
         message: error.details[0].message,
@@ -41,11 +43,14 @@ const handellogin = (data) => {
             const flag = bcrypt.compareSync(value.password, res[0].password);
 
             if (flag) {
-              const tdata = { name: res[0].name, role: res[0].role };
 
-              const token = GenToken(tdata);
+              const token = GenToken(value);
               resolve({
                 success: true,
+                user:{
+                  name:res[0].userName,
+                  role:res[0].role,
+                },
                 token: token,
               });
             } else {

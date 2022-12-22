@@ -30,6 +30,9 @@ const insertProjects=(data)=>{
         }
         pool.getConnection((err,con)=>{
             if(err){
+
+
+                
                 reject({
                     success:false,
                     message:"there is Some error please try again"
@@ -39,6 +42,7 @@ const insertProjects=(data)=>{
             con.query(query,[data.name,data.image,data.link,data.detail],(err,res)=>{
                 con.release();
                 if(err){
+                    
                     reject({
                         success:false,
                         message:"there is some Error please try again"

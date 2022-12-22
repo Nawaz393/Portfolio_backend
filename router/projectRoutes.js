@@ -15,6 +15,7 @@ projectRoutes.get("/", (req, res) => {
 });
 
 projectRoutes.post("/", (req, res) => {
+ 
   insertProject(req.body)
     .then((result) => {
       res.json(result);

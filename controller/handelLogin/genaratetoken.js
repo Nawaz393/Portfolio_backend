@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 GenToken = (data) => {
   const token = jwt.sign(
-    { user: data.userName, role: data.role },
+    { data },
     "hellothismnk"
   );
   return token;
