@@ -3,8 +3,10 @@ const handelskills = require("../controller/handelSkill/handelskills");
 const getskills = require("../controller/handelSkill/Getskills");
 const UpdateSkill = require("../controller/handelSkill/updateSkill");
 const DeleteSkill = require("../controller/handelSkill/DeleteSkill");
+const RequireAuth = require("../middleware/RequireAuth");
 const skillroute = express.Router();
 
+skillroute.use(RequireAuth);
 skillroute.post("/", (req, res) => {
   handelskills(req.body)
     .then((data) => res.json(data))

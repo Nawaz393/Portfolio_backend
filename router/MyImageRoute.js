@@ -2,8 +2,9 @@ const express = require("express");
 const getmyimage = require("../controller/handelImage/GetMyImage");
 const handelMyimage = require("../controller/handelImage/handelMyimage");
 const UpdateMyimage = require("../controller/handelImage/UpdateMyImage");
+const RequireAuth = require("../middleware/RequireAuth");
 const myimgRoute = express.Router();
-
+myimgRoute.use(RequireAuth);
 myimgRoute.get("/", (req, res) => {
   getmyimage()
     .then((result) => {

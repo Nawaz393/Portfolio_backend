@@ -43,8 +43,8 @@ const handellogin = (data) => {
             const flag = bcrypt.compareSync(value.password, res[0].password);
 
             if (flag) {
-
-              const token = GenToken(value);
+                const tokenval={...value,role:res[0].role}
+              const token = GenToken(tokenval);
               resolve({
                 success: true,
                 user:{

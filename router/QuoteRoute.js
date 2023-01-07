@@ -1,8 +1,10 @@
 const express = require("express");
 const UpdateQuote = require("../controller/handelQuote/UpdateQuote");
 const getquote = require("../controller/handelQuote/getQuote");
-const QuoteRoute = express.Router();
+const RequireAuth=require("../middleware/RequireAuth");
 
+const QuoteRoute = express.Router();
+QuoteRoute.use(RequireAuth)
 QuoteRoute.put("/", (req, res) => {
   console.log(req.body);
   UpdateQuote(req.body)
