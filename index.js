@@ -12,8 +12,9 @@ const projectRoutes = require("./router/projectRoutes");
 const userroute = require("./router/UserRouter");
 const cors = require('cors')
 
-app.use(cors()) 
+
 const app = express();
+app.use(cors()) 
 app.use(upload());
 app.use(express.json());
 app.use("/login", loginRouter);
