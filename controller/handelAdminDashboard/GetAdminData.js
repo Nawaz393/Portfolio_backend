@@ -21,6 +21,7 @@ const admindata = () => {
             message: "there is some error please try again",
           });
         }
+      
 
         resolve(res);
       });

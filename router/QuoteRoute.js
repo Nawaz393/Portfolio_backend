@@ -4,9 +4,8 @@ const getquote = require("../controller/handelQuote/getQuote");
 const RequireAuth=require("../middleware/RequireAuth");
 
 const QuoteRoute = express.Router();
-QuoteRoute.use(RequireAuth)
-QuoteRoute.put("/", (req, res) => {
-  console.log(req.body);
+QuoteRoute.put("/",RequireAuth ,(req, res) => {
+  
   UpdateQuote(req.body)
     .then((data) => {
       res.json(data);

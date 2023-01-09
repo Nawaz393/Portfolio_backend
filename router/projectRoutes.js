@@ -4,18 +4,20 @@ const insertProject = require("../controller/handelProjects/insertProjects");
 const updateProject = require("../controller/handelProjects/updateProjects");
 const deleteProject = require("../controller/handelProjects/deleteProject");
 const RequireAuth = require("../middleware/RequireAuth");
+const AdminAuth = require("../middleware/AdminAuth");
 const projectRoutes = express.Router();
-projectRoutes.use(RequireAuth);
+
 projectRoutes.get("/", (req, res) => {
-  GetProjects().then((result) => {
-    res.json(result);
-  }).catch((err) => {
-    res.json(err);
-  });
+  GetProjects()
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
 });
 
-projectRoutes.post("/", (req, res) => {
- 
+projectRoutes.post("/", RequireAuth, (req, res) => {
   insertProject(req.body)
     .then((result) => {
       res.json(result);
@@ -25,7 +27,7 @@ projectRoutes.post("/", (req, res) => {
     });
 });
 
-projectRoutes.put("/", (req, res) => {
+projectRoutes.put("/", AdminAuth, (req, res) => {
   updateProject(req.body)
     .then((result) => {
       res.json(result);
@@ -34,7 +36,7 @@ projectRoutes.put("/", (req, res) => {
       res.json(err);
     });
 });
-projectRoutes.delete("/", (req, res) => {
+projectRoutes.delete("/", AdminAuth, (req, res) => {
   deleteProject(req.body)
     .then((result) => {
       res.json(result);

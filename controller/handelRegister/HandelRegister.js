@@ -5,7 +5,7 @@ const pool = require("../../dataAccessLayer/DatabaseConnection");
 const handelregister = async (data) => {
   return new Promise((resolve, reject) => {
     const { error, value } = schema.validate(data, { abortEarly: false });
-
+   
     if (error) {
       reject({
         success: false,

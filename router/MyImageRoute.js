@@ -4,7 +4,7 @@ const handelMyimage = require("../controller/handelImage/handelMyimage");
 const UpdateMyimage = require("../controller/handelImage/UpdateMyImage");
 const RequireAuth = require("../middleware/RequireAuth");
 const myimgRoute = express.Router();
-myimgRoute.use(RequireAuth);
+
 myimgRoute.get("/", (req, res) => {
   getmyimage()
     .then((result) => {
@@ -15,7 +15,7 @@ myimgRoute.get("/", (req, res) => {
     });
 });
 
-myimgRoute.post("/", (req, res) => {
+myimgRoute.post("/", RequireAuth, (req, res) => {
   handelMyimage(req.body)
     .then((result) => {
       res.json(result);
@@ -24,7 +24,7 @@ myimgRoute.post("/", (req, res) => {
       res.json(err);
     });
 });
-myimgRoute.put("/", (req, res) => {
+myimgRoute.put("/", RequireAuth, (req, res) => {
   UpdateMyimage(req.body)
     .then((result) => {
       res.json(result);

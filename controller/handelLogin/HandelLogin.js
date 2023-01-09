@@ -4,11 +4,11 @@ const bcrypt = require("bcrypt");
 const GenToken = require("./genaratetoken");
 
 const handellogin = (data) => {
- 
+  
   return new Promise((resolve, reject) => {
     const { error, value } = schema.validate(data, { abortEarly: false });
     if (error) {
-  
+      console.log(error);
       reject({
         success: false,
         message: error.details[0].message,

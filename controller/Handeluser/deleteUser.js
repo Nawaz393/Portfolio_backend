@@ -1,5 +1,4 @@
 const pool = require("../../dataAccessLayer/DatabaseConnection");
-
 const deleteUser = (data) => {
   return new Promise((resolve, reject) => {
     pool.getConnection((err, con) => {
@@ -9,7 +8,6 @@ const deleteUser = (data) => {
           message: "there is Some error please try again",
         });
       }
-
       const query = "delete from User where id=?";
 
       con.query(query, [data.id], (err, res) => {

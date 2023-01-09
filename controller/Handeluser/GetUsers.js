@@ -1,9 +1,7 @@
 const pool = require("../../dataAccessLayer/DatabaseConnection");
 
-const getuser=()=>{
-
-
-return new Promise((resolve, reject) => {
+const getuser = () => {
+  return new Promise((resolve, reject) => {
     pool.getConnection((err, con) => {
       if (err) {
         reject({
@@ -12,9 +10,9 @@ return new Promise((resolve, reject) => {
         });
       }
 
-      const query = "select * from User";
+      const query = "select id,userName,email,role from User";
 
-      con.query( query, (err, res) => {
+      con.query(query, (err, res) => {
         con.release();
         if (err) {
           reject({
@@ -24,12 +22,9 @@ return new Promise((resolve, reject) => {
         }
 
         resolve(res);
-      }
-        );
+      });
     });
-
-    
-})
-}
+  });
+};
 
 module.exports = getuser;

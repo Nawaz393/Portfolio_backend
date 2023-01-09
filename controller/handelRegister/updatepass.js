@@ -6,6 +6,7 @@ const updatepass = (data) => {
     const { error, value } = UpdatepassSchema.validate(data, {
       AbortEarly: false,
     });
+  
     if (error) {
       reject({
         success: false,
@@ -19,6 +20,7 @@ const updatepass = (data) => {
         message: "password and new password are same",
       });
     }
+
     const hash = bcrypt.hashSync(npassword, 13);
     const qdata = [hash, userName];
     const query = `UPDATE User SET password=? WHERE userName=?`;
@@ -29,6 +31,38 @@ const updatepass = (data) => {
           message: "there is some sort of error please try again",
         });
       }
+      const fquery = "select * from User where userName=?";
+    
+      conn.query(fquery, [userName], (err, res) => {
+        if (err) {
+       
+         
+          reject({
+            success: false,
+            message: "there is some sort of error please try again",
+          });
+        }
+       
+        if (res.length > 0) {
+         
+          const dbpass = res[0].password || "";
+          const match = bcrypt.compareSync(password, dbpass);
+
+          if (!match) {
+              
+            reject({
+              success: false,
+              message: "please enter correct old password",
+            });
+          }
+        } else {
+         
+          reject({
+            success: false,
+            message: "incrorrect username",
+          });
+        }
+      });
       conn.query(query, qdata, (err, res) => {
         conn.release();
         if (err) {
@@ -37,11 +71,11 @@ const updatepass = (data) => {
             message: "there is some sort of error please try again",
           });
         }
-        console.log(res);
-        if (res.fieldCount == 0) {
+  
+        if (res.affectedRows <= 0) {
           reject({
             success: false,
-            message: "incorrect username",
+            message: "Error: password not updated",
           });
         }
         resolve({

@@ -6,8 +6,7 @@ const DeleteSkill = require("../controller/handelSkill/DeleteSkill");
 const RequireAuth = require("../middleware/RequireAuth");
 const skillroute = express.Router();
 
-skillroute.use(RequireAuth);
-skillroute.post("/", (req, res) => {
+skillroute.post("/" ,RequireAuth ,(req, res) => {
   handelskills(req.body)
     .then((data) => res.json(data))
     .catch((err) => {
@@ -21,14 +20,14 @@ skillroute.get("/", (req, res) => {
     .catch((data) => res.json(data));
 });
 
-skillroute.put("/", (req, res) => {
+skillroute.put("/",RequireAuth , (req, res) => {
   UpdateSkill(req.body)
     .then((data) => res.json(data))
     .catch((data) => res.json(data));
 });
 
-skillroute.delete("/", (req, res) => {
-  console.log(req.body);
+skillroute.delete("/",RequireAuth ,(req, res) => {
+
   DeleteSkill(req.body)
     .then((data) => res.json(data))
     .catch((data) => res.json(data));
