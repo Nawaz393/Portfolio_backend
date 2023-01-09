@@ -10,6 +10,9 @@ const AdminRoute = require("./router/AdminRoute");
 const AboutMeRoute = require("./router/AboutMeRoute");
 const projectRoutes = require("./router/projectRoutes");
 const userroute = require("./router/UserRouter");
+const cors = require('cors')
+
+app.use(cors()) 
 const app = express();
 app.use(upload());
 app.use(express.json());
