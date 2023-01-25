@@ -2,10 +2,8 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const pool = require("../dataAccessLayer/DatabaseConnection");
 const AdminAuth = (req, res, next) => {
-  
   const { authorization } = req.headers;
   if (!authorization) {
-    
     res.json({
       success: false,
       message: "You are not authorized to access this route",
@@ -23,7 +21,16 @@ const AdminAuth = (req, res, next) => {
       } else {
         const userName = decodedToken.data.userName;
         const role = decodedToken.data.role;
-        
+
+        var dateNow = new Date();
+
+        if (decodedToken.exp < dateNow.getTime() / 1000) {
+          res.status(401).json({
+            success: false,
+            message: "please login again",
+          });
+          return;
+        }
         pool.getConnection((error, conn) => {
           if (error) {
             res.json({

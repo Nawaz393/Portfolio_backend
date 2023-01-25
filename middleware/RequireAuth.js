@@ -3,14 +3,13 @@ const jwt = require("jsonwebtoken");
 const pool = require("../dataAccessLayer/DatabaseConnection");
 const RequireAuth = (req, res, next) => {
   const { authorization } = req.headers;
- 
+
   if (!authorization) {
     res.json({
       success: false,
       message: "You are not authorized to access this route",
     });
   }
-
   const token = authorization.split(" ")[1];
   if (token) {
     jwt.verify(token, process.env.SECRET_TOKEN, (err, decodedToken) => {
@@ -21,8 +20,18 @@ const RequireAuth = (req, res, next) => {
           message: err.message,
         });
       } else {
+        var dateNow = new Date();
+
+        if (decodedToken.exp < dateNow.getTime() / 1000) {
+          res.status(401).json({
+            success: false,
+            message: "please login again",
+          });
+          return;
+        }
+
         const userName = decodedToken.data.userName;
-       
+
         pool.getConnection((error, conn) => {
           if (error) {
             console.log(error);
@@ -42,7 +51,6 @@ const RequireAuth = (req, res, next) => {
             }
 
             if (resp.length <= 0) {
-           
               res.status(401).json({
                 success: false,
                 message: "you are unauthorized to access this route",
