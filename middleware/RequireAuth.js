@@ -19,9 +19,9 @@ const RequireAuth = (req, res, next) => {
           success: false,
           message: err.message,
         });
+        return;
       } else {
         var dateNow = new Date();
-
         if (decodedToken.exp < dateNow.getTime() / 1000) {
           res.status(401).json({
             success: false,

@@ -18,6 +18,7 @@ const AdminAuth = (req, res, next) => {
           success: false,
           message: err.message,
         });
+        return;
       } else {
         const userName = decodedToken.data.userName;
         const role = decodedToken.data.role;
