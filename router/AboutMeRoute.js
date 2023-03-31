@@ -9,7 +9,7 @@ const AboutMeRoute = express.Router();
 
 AboutMeRoute.get("/", (req, res) => {
   GetAboutMe()
-    .then((data) => res.json(data))
+    .then((data) =>  res.json(data))
     .catch((err) => res.json(err));
 });
 

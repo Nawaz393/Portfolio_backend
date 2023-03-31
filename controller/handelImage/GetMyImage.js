@@ -4,6 +4,7 @@ const getmyimage = () => {
   return new Promise((resolve, reject) => {
     pool.getConnection((err, conn) => {
       if (err) {
+        console.log(err);
         reject({
           success: false,
           message: "there is some error please try again",
